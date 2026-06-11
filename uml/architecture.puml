@@ -1,0 +1,37 @@
+@startuml
+!pragma layout smetana
+title SmartLib package overview
+
+package domain {
+  class LibraryService
+  class LoanManagementService
+}
+
+package patterns {
+  class LoanBuilder
+  class LibraryEventBus
+}
+
+package concurrent {
+  class ReturnProcessor
+  class ConcurrentInventory
+}
+
+package functional {
+  class LibraryAnalytics
+}
+
+package modern {
+  class LoanResultHandler
+}
+
+package generics {
+  class Catalogue
+}
+
+LibraryService ..> concurrent : return events
+ReturnProcessor ..> domain : loan lifecycle
+LoanResultHandler ..> domain : borrow outcomes
+patterns ..> domain : adapters
+functional ..> domain : analytics input
+@enduml

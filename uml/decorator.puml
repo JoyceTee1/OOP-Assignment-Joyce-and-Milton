@@ -1,0 +1,19 @@
+@startuml
+!pragma layout smetana
+interface NotificationService {
+  +send(recipient: String, message: String)
+}
+
+class EmailNotificationService
+abstract class NotificationDecorator
+class LoggingDecorator
+class RetryDecorator
+class RateLimitingDecorator
+
+NotificationService <|.. EmailNotificationService
+NotificationService <|.. NotificationDecorator
+NotificationDecorator <|-- LoggingDecorator
+NotificationDecorator <|-- RetryDecorator
+NotificationDecorator <|-- RateLimitingDecorator
+NotificationDecorator o--> NotificationService : delegate
+@enduml

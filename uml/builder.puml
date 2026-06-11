@@ -1,0 +1,30 @@
+@startuml
+!pragma layout smetana
+class LoanBuilder {
+  +LoanBuilder(member: Member, book: Book)
+  +notes(String): LoanBuilder
+  +renewalCount(int): LoanBuilder
+  +referenceCode(String): LoanBuilder
+  +build(): Loan
+}
+
+class ReservationBuilder {
+  +ReservationBuilder(member: Member, book: Book)
+  +notes(String): ReservationBuilder
+  +priority(int): ReservationBuilder
+  +notificationPreferences(String): ReservationBuilder
+  +build(): Reservation
+}
+
+class Loan
+class Reservation
+class Member
+class Book
+
+LoanBuilder ..> Loan : creates
+LoanBuilder --> Member
+LoanBuilder --> Book
+ReservationBuilder ..> Reservation : creates
+ReservationBuilder --> Member
+ReservationBuilder --> Book
+@enduml

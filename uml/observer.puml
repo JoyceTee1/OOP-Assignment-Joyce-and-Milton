@@ -1,0 +1,21 @@
+@startuml
+!pragma layout smetana
+class LibraryEventBus {
+  +subscribe(listener)
+  +unsubscribe(listener)
+  +publish(event)
+}
+
+interface LibraryEventListener {
+  +onEvent(event)
+}
+
+class OverdueFineListener
+class MemberNotificationListener
+class AuditLogListener
+
+LibraryEventListener <|.. OverdueFineListener
+LibraryEventListener <|.. MemberNotificationListener
+LibraryEventListener <|.. AuditLogListener
+LibraryEventBus o--> "many" LibraryEventListener
+@enduml
